@@ -70,8 +70,8 @@ ditu(event.keyCode);
           document.getElementById('l1').style.backgroundPosition='-'+y*64+'px  '+'-'+x*64+'px';
           y++;
       },300);
-      function shang(){
-          document.getElementById('l2').style.backgroundImage="url('images/11.jpg')";
+      function dongtu(name){
+          document.getElementById('l2').style.backgroundImage="url('images/"+name+"')";
       }
 function ditu( z){
 
@@ -80,15 +80,14 @@ function ditu( z){
 
 switch (z){
 
-    case  37: if(px>0&&di[py][px-2]=='1'){px=px-2; }else{}x=1; break;
-    case  38:if(py>0&&di[py-1][px]=='1'){py=py-1; }else{}x=3; break;
-    case  39: if(px<90&&di[py][px+2]=='1'){px=px+2; }else{} x=2;break;
-    case  40: if(py<20&&di[py+1][px]=='1'){py=py+1; }else{}x=0;break;
-   // default:alert(1);
+    case  37: if(px>0){if(di[py][px-2]=='1')px=px-2; }else{ dongtu('11.jpg'); px=90;}x=1; break;
+    case  38:if(py>0){if(di[py-1][px]=='1')py=py-1; }else{dongtu('12.jpg');py=20;}x=3; break;
+    case  39: if(px<90){if(di[py][px+2]=='1')px=px+2; }else{dongtu('13.jpg');px=0;} x=2;break;
+    case  40: if(py<20){if(di[py+1][px]=='1')py=py+1; }else{dongtu('14.jpg');py=0;}x=0;break;
+
 }
      }   else{
-         alert(px);
-         alert(py);
+
      }
 }
       net('/b',aa,'a=1');
