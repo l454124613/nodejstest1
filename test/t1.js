@@ -4,22 +4,34 @@
 
 var fs = require('fs');
 var b = require('bluebird');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('../map/ndb.db');
+//db.serialize(function() {
+//
+//    db.each("SELECT * FROM t1", function(err, row) {
+//        console.log(row.t1 );
+//    });
+//})
+////db.close;
+//db.all("SELECT * FROM t1", function(err, row) {
+//        console.log(row);
+//    });
+//
+//db.close;
+
 
 function tt() {
 
     var readf = b.promisify(fs.readFile);
     readf('../map/tu1.csv').then(function (d) {
         //  var d1=d.toString().split('\r\n');
-        return b.all(d.toString().split('\r\n'));
+       var dd= d.toString().replace(/,/g,'').replace(/\t/g,'').replace(/ /g,'');
+        //console.log(dd);
+        var stmt = db.prepare("INSERT INTO map ('name', 'data', 'pic', 'used') VALUES (?, ?, ?, 0)");
+        stmt.run('t2',dd,'1.jpg');
 
-    }).then(function (da) {
-        return b.all(da.toString().split(','));
-        //  console.log(da);
-    }).then(function (db) {
-        //console.log(db);
-        dd1 = db;
-        console.log(db[200]);
-        return b.resolve(2);
+        stmt.finalize();
+
     }).catch(function (e) {
         console.log(e);
     });
@@ -27,21 +39,11 @@ function tt() {
 
 }
 
+tt();
 
-var dd1=[];
 
 
-function tt1(){
-    tt();
-   var i1= setInterval(function(){
-        if(dd1.length!=0){
-            clearInterval(i1);
-return dd1;
-        }
-    },100);
 
-}
-console.log(tt1());
 
 
 
