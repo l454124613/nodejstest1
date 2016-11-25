@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{{title}}</title>
 
-  </head>
-  <body onkeyup="dong()" style="height: 90%">
+</head>
+<body onkeyup="dong()" style="height: 90%">
 
-    {{{body}}}
+{{{body}}}
 
-  <script>
+<script>
 
-//      var a=12;
-//      var b=6;
-      var x=0;
-      var y=0;
-var px=0;
-var py=0;
-      var di;
-      var  ajax = new XMLHttpRequest();
-      function net(url,sendfun,data){
+    //      var a=12;
+    //      var b=6;
+    var x = 0;
+    var y = 0;
+    var px = 0;
+    var py = 0;
+    var di;
+    var ajax = new XMLHttpRequest();
+    function net(url, sendfun, data) {
 
-          ajax.open( "post" , url , true );
-          ajax.setRequestHeader( "Content-Type" , "application/x-www-form-urlencoded" );
-          ajax.onreadystatechange = sendfun;
-          ajax.send( data );
-      }
-      function aa () {
-          if( ajax.readyState == 4 ) {
-              if( ajax.status == 200 ) {
+        ajax.open("post", url, true);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.onreadystatechange = sendfun;
+        ajax.send(data);
+    }
+    function aa() {
+        if (ajax.readyState == 4) {
+            if (ajax.status == 200) {
 
-                 // console.log( ajax.responseText );
-                  var data = eval('('+ajax.responseText+')');
-                  di=data;
-                 // console.log( data.length );
+                // console.log( ajax.responseText );
+                var data = eval('(' + ajax.responseText + ')');
+                di = data;
+                // console.log( data.length );
 
-              }
-              else {
-                  console.log( "HTTP请求错误！错误码："+ajax.status );
-              }
-          }
-          else {
-             // fnLoading();
-          }
-      }
-      function dong(){
-         // alert(event.keyCode);
+            }
+            else {
+                console.log("HTTP请求错误！错误码：" + ajax.status);
+            }
+        }
+        else {
+            // fnLoading();
+        }
+    }
+    function dong() {
+        // alert(event.keyCode);
         //  switch (event.keyCode){
 //              case  37:  if(a>31){a-=20;} x=1; break;
 //              case  38:if(b>25){b-=20;}else {shang()}x=3;break;
@@ -55,42 +55,172 @@ var py=0;
 //              case  38:x=3; break;
 //              case  39: x=2; break;
 //              case  40: x=0; break;
-      //    }
-ditu(event.keyCode);
-          document.getElementById("l1").style.left=12+px*10+'px';
-          document.getElementById("l1").style.top=6+py*20+'px';
-          document.getElementById('l1').style.backgroundPosition=' 0px  '+'-'+x*64+'px';
-         // console.log(a+'|'+b);
+        //    }
+        ditu(event.keyCode);
+        document.getElementById("l1").style.left = 12 + px * 10 + 'px';
+        document.getElementById("l1").style.top = 6 + py * 20 + 'px';
+        document.getElementById('l1').style.backgroundPosition = ' 0px  ' + '-' + x * 64 + 'px';
+        // console.log(a+'|'+b);
 
-      }
-      setInterval(function(){
-          if(y==4){
-              y=0;
-          }
-          document.getElementById('l1').style.backgroundPosition='-'+y*64+'px  '+'-'+x*64+'px';
-          y++;
-      },300);
-      function dongtu(name){
-          document.getElementById('l2').style.backgroundImage="url('images/"+name+"')";
-      }
-function ditu( z){
+    }
+    setInterval(function () {
+        if (y == 4) {
+            y = 0;
+        }
+        document.getElementById('l1').style.backgroundPosition = '-' + y * 64 + 'px  ' + '-' + x * 64 + 'px';
+        y++;
+    }, 300);
 
-     if(px>=0&&py>=0&&px<91&&py<21){
-     //    alert(di[1].length);
 
-switch (z){
+    function dongtu(a) {
+        var ree = '';
+        console.log(di);
+        // document.getElementById('l2').style.backgroundImage="url('images/"+name+"')";
+        //  alert(get4(1,1));
+        for (var i = 0; i < 21; i++) {
+            for (var j = 0; j < 46; j++) {
 
-    case  37: if(px>0){if(di[py][px-2]=='1')px=px-2; }else{ dongtu('11.jpg'); px=90;}x=1; break;
-    case  38:if(py>0){if(di[py-1][px]=='1')py=py-1; }else{dongtu('12.jpg');py=20;}x=3; break;
-    case  39: if(px<90){if(di[py][px+2]=='1')px=px+2; }else{dongtu('13.jpg');px=0;} x=2;break;
-    case  40: if(py<20){if(di[py+1][px]=='1')py=py+1; }else{dongtu('14.jpg');py=0;}x=0;break;
+                if (di[i][2 * j] == 0) {
+                    ree = ree + '   <div style="float: left; width: 20px;height: 20px; background-image:url(\'images/中20.jpg\'); " class="'+i+":"+j+'"> </div>'
 
-}
-     }   else{
 
-     }
-}
-      net('/b',aa,'a=1');
-  </script>
-  </body>
+                } else {
+                    ree = ree + '   <div style=" float: left;width: 20px;height: 20px; background-image:url(\'images/bai20.jpg\'); " class="'+i+":"+j+'" > </div>'
+                }
+
+            }
+        }
+        document.getElementById('l3').innerHTML=ree;
+    }
+
+    function get4(i, j) {
+        //zhong =1
+        //左上=2
+        //左下=3
+        //右上=4
+        //右下=5
+        var re = [];
+        if (i == 0) {
+            if (j == 0) {
+                re[0] = 2;
+                re[1] = 2;
+                re[2] = di[i][2 * j + 2];
+                re[3] = di[i + 1][2 * j];
+            } else {
+                if (j == 45) {
+                    re[0] = di[i][2 * j - 2];
+                    re[1] = 2;
+                    re[2] = 2;
+                    re[3] = di[i + 1][2 * j];
+                } else {
+                    re[0] = di[i][2 * j - 2];
+                    re[1] = 2;
+                    re[2] = di[i][2 * j + 2];
+                    re[3] = di[i + 1][2 * j];
+                }
+
+            }
+
+        } else {
+
+            if (i == 20) {
+                if (j == 0) {
+                    re[0] = 2;
+                    re[1] = di[i - 1][2 * j];
+                    re[2] = di[i][2 * j + 2];
+                    re[3] = 2;
+                } else {
+                    if (j == 45) {
+                        re[0] = di[i][2 * j - 2];
+                        re[1] = di[i - 1][2 * j];
+                        re[2] = 2;
+                        re[3] = 2;
+                    } else {
+                        re[0] = di[i][2 * j - 2];
+                        re[1] = di[i - 1][2 * j];
+                        re[2] = di[i][2 * j + 2];
+                        re[3] = 2;
+                    }
+
+                }
+
+            } else {
+                if (j == 0) {
+                    re[0] = 2;
+                    re[1] = di[i - 1][2 * j];
+                    re[2] = di[i][2 * j + 2];
+                    re[3] = di[i + 1][2 * j];
+                } else {
+                    if (j == 45) {
+                        re[0] = di[i][2 * j - 2];
+                        re[1] = di[i - 1][2 * j];
+                        re[2] = 2;
+                        re[3] = di[i + 1][2 * j];
+                    } else {
+                        re[0] = di[i][2 * j - 2];
+                        re[1] = di[i - 1][2 * j];
+                        re[2] = di[i][2 * j + 2];
+                        re[3] = di[i + 1][2 * j];
+                    }
+
+                }
+            }
+
+        }
+        return re;
+    }
+    //alert(get4(1,1));
+    //alert(di[1][0]);
+    function ditu(z) {
+
+        if (px >= 0 && py >= 0 && px < 91 && py < 21) {
+            //    alert(di[1].length);
+
+            switch (z) {
+
+                case  37:
+                    if (px > 0) {
+                        if (di[py][px - 2] == '1')px = px - 2;
+                    } else {
+                        dongtu('11.jpg');
+                        px = 90;
+                    }
+                    x = 1;
+                    break;
+                case  38:
+                    if (py > 0) {
+                        if (di[py - 1][px] == '1')py = py - 1;
+                    } else {
+                        dongtu('12.jpg');
+                        py = 20;
+                    }
+                    x = 3;
+                    break;
+                case  39:
+                    if (px < 90) {
+                        if (di[py][px + 2] == '1')px = px + 2;
+                    } else {
+                        dongtu('13.jpg');
+                        px = 0;
+                    }
+                    x = 2;
+                    break;
+                case  40:
+                    if (py < 20) {
+                        if (di[py + 1][px] == '1')py = py + 1;
+                    } else {
+                        dongtu('14.jpg');
+                        py = 0;
+                    }
+                    x = 0;
+                    break;
+
+            }
+        } else {
+
+        }
+    }
+    net('/b', aa, 'a=1');
+</script>
+</body>
 </html>
