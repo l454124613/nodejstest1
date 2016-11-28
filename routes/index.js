@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var b = require('bluebird');
+var Go=require('../test/t2');
+var go=new Go();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,18 +34,12 @@ router.get('/a', function(req, res, next) {
 
 });
 router.post('/b',function( req,res){
-    var readf = b.promisify(fs.readFile);
-    readf('map/tu1.csv').then(function (d) {
-        //  var d1=d.toString().split('\r\n');
-        return b.all(d.toString().split('\r\n'));
 
-    }).then(function (da) {
-        res.json(da);
+  var arr=go.getarr(req.body.py,req.body.px);
 
-        //  console.log(da);
-    }).catch(function (e) {
-        console.log(e);
-    });
+    res.json(arr);
+
+
 });
 
 

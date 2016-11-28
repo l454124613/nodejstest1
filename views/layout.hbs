@@ -12,10 +12,10 @@
 
     //      var a=12;
     //      var b=6;
-    var x = 0;
-    var y = 0;
-    var px = 0;
-    var py = 0;
+    var x = 0;//tu
+    var y = 0;//tu
+    var px = 0;//di
+    var py = 0;//di
     var di;
     var ajax = new XMLHttpRequest();
     function net(url, sendfun, data) {
@@ -32,7 +32,8 @@
                 // console.log( ajax.responseText );
                 var data = eval('(' + ajax.responseText + ')');
                 di = data;
-                // console.log( data.length );
+                dongtu(1);
+               //  console.log( di[1][1]);
 
             }
             else {
@@ -57,8 +58,8 @@
 //              case  40: x=0; break;
         //    }
         ditu(event.keyCode);
-        document.getElementById("l1").style.left = 12 + px * 10 + 'px';
-        document.getElementById("l1").style.top = 6 + py * 20 + 'px';
+        document.getElementById("l1").style.left =  px * 64 + 'px';
+        document.getElementById("l1").style.top =  py * 64 + 'px';
         document.getElementById('l1').style.backgroundPosition = ' 0px  ' + '-' + x * 64 + 'px';
         // console.log(a+'|'+b);
 
@@ -73,19 +74,20 @@
 
 
     function dongtu(a) {
+//        net('/b', aa, 'a=1');
         var ree = '';
-        console.log(di);
+       // console.log(di);
         // document.getElementById('l2').style.backgroundImage="url('images/"+name+"')";
         //  alert(get4(1,1));
-        for (var i = 0; i < 21; i++) {
-            for (var j = 0; j < 46; j++) {
+        for (var i = 0; i < 8; i++) {
+            for (var j = 0; j < 16; j++) {
 
-                if (di[i][2 * j] == 0) {
-                    ree = ree + '   <div style="float: left; width: 20px;height: 20px; background-image:url(\'images/中20.jpg\'); " class="'+i+":"+j+'"> </div>'
+                if (di[i][j] == 0) {
+                    ree = ree + '   <div style="float: left; width:64px;height: 64px; background-image:url(\'images/hei.jpg\'); " class="'+i+":"+j+'"> </div>'
 
 
                 } else {
-                    ree = ree + '   <div style=" float: left;width: 20px;height: 20px; background-image:url(\'images/bai20.jpg\'); " class="'+i+":"+j+'" > </div>'
+                    ree = ree + '   <div style=" float: left;width: 64px;height: 64px; background-image:url(\'images/bai.jpg\'); " class="'+i+":"+j+'" > </div>'
                 }
 
             }
@@ -93,97 +95,98 @@
         document.getElementById('l3').innerHTML=ree;
     }
 
-    function get4(i, j) {
-        //zhong =1
-        //左上=2
-        //左下=3
-        //右上=4
-        //右下=5
-        var re = [];
-        if (i == 0) {
-            if (j == 0) {
-                re[0] = 2;
-                re[1] = 2;
-                re[2] = di[i][2 * j + 2];
-                re[3] = di[i + 1][2 * j];
-            } else {
-                if (j == 45) {
-                    re[0] = di[i][2 * j - 2];
-                    re[1] = 2;
-                    re[2] = 2;
-                    re[3] = di[i + 1][2 * j];
-                } else {
-                    re[0] = di[i][2 * j - 2];
-                    re[1] = 2;
-                    re[2] = di[i][2 * j + 2];
-                    re[3] = di[i + 1][2 * j];
-                }
-
-            }
-
-        } else {
-
-            if (i == 20) {
-                if (j == 0) {
-                    re[0] = 2;
-                    re[1] = di[i - 1][2 * j];
-                    re[2] = di[i][2 * j + 2];
-                    re[3] = 2;
-                } else {
-                    if (j == 45) {
-                        re[0] = di[i][2 * j - 2];
-                        re[1] = di[i - 1][2 * j];
-                        re[2] = 2;
-                        re[3] = 2;
-                    } else {
-                        re[0] = di[i][2 * j - 2];
-                        re[1] = di[i - 1][2 * j];
-                        re[2] = di[i][2 * j + 2];
-                        re[3] = 2;
-                    }
-
-                }
-
-            } else {
-                if (j == 0) {
-                    re[0] = 2;
-                    re[1] = di[i - 1][2 * j];
-                    re[2] = di[i][2 * j + 2];
-                    re[3] = di[i + 1][2 * j];
-                } else {
-                    if (j == 45) {
-                        re[0] = di[i][2 * j - 2];
-                        re[1] = di[i - 1][2 * j];
-                        re[2] = 2;
-                        re[3] = di[i + 1][2 * j];
-                    } else {
-                        re[0] = di[i][2 * j - 2];
-                        re[1] = di[i - 1][2 * j];
-                        re[2] = di[i][2 * j + 2];
-                        re[3] = di[i + 1][2 * j];
-                    }
-
-                }
-            }
-
-        }
-        return re;
-    }
+//    function get4(i, j) {
+//        //zhong =1
+//        //左上=2
+//        //左下=3
+//        //右上=4
+//        //右下=5
+//        var re = [];
+//        if (i == 0) {
+//            if (j == 0) {
+//                re[0] = 2;
+//                re[1] = 2;
+//                re[2] = di[i][j + 1];
+//                re[3] = di[i + 1][j];
+//            } else {
+//                if (j == 45) {
+//                    re[0] = di[i][j - 1];
+//                    re[1] = 2;
+//                    re[2] = 2;
+//                    re[3] = di[i + 1][j];
+//                } else {
+//                    re[0] = di[i][j - 1];
+//                    re[1] = 2;
+//                    re[2] = di[i][j + 1];
+//                    re[3] = di[i + 1][j];
+//                }
+//
+//            }
+//
+//        } else {
+//
+//            if (i == 20) {
+//                if (j == 0) {
+//                    re[0] = 2;
+//                    re[1] = di[i - 1][j];
+//                    re[2] = di[i][j + 1];
+//                    re[3] = 2;
+//                } else {
+//                    if (j == 45) {
+//                        re[0] = di[i][j - 1];
+//                        re[1] = di[i - 1][j];
+//                        re[2] = 2;
+//                        re[3] = 2;
+//                    } else {
+//                        re[0] = di[i][j - 1];
+//                        re[1] = di[i - 1][j];
+//                        re[2] = di[i][j + 1];
+//                        re[3] = 2;
+//                    }
+//
+//                }
+//
+//            } else {
+//                if (j == 0) {
+//                    re[0] = 2;
+//                    re[1] = di[i - 1][j];
+//                    re[2] = di[i][j + 1];
+//                    re[3] = di[i + 1][j];
+//                } else {
+//                    if (j == 45) {
+//                        re[0] = di[i][j - 1];
+//                        re[1] = di[i - 1][j];
+//                        re[2] = 2;
+//                        re[3] = di[i + 1][j];
+//                    } else {
+//                        re[0] = di[i][j - 1];
+//                        re[1] = di[i - 1][j];
+//                        re[2] = di[i][j + 1];
+//                        re[3] = di[i + 1][j];
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//        return re;
+//    }
     //alert(get4(1,1));
     //alert(di[1][0]);
     function ditu(z) {
 
-        if (px >= 0 && py >= 0 && px < 91 && py < 21) {
+        if (px >= 0 && py >= 0 && px < 16 && py < 8) {
             //    alert(di[1].length);
 
             switch (z) {
 
                 case  37:
                     if (px > 0) {
-                        if (di[py][px - 2] == '1')px = px - 2;
+                        if (di[py][px - 1] == '1')px = px - 1;
                     } else {
-                        dongtu('11.jpg');
-                        px = 90;
+
+                        px = 15;
+                        net('/b', aa, 'px='+px+'&py='+py);
                     }
                     x = 1;
                     break;
@@ -191,26 +194,30 @@
                     if (py > 0) {
                         if (di[py - 1][px] == '1')py = py - 1;
                     } else {
-                        dongtu('12.jpg');
-                        py = 20;
+
+                        py = 7;
+                       // console.log(px+':'+py);
+                        net('/b', aa, 'px='+px+'&py='+py);
                     }
                     x = 3;
                     break;
                 case  39:
-                    if (px < 90) {
-                        if (di[py][px + 2] == '1')px = px + 2;
+                    if (px < 15) {
+                        if (di[py][px + 1] == '1')px = px + 1;
                     } else {
-                        dongtu('13.jpg');
+
                         px = 0;
+                        net('/b', aa, 'px='+px+'&py='+py);
                     }
                     x = 2;
                     break;
                 case  40:
-                    if (py < 20) {
+                    if (py < 7) {
                         if (di[py + 1][px] == '1')py = py + 1;
                     } else {
-                        dongtu('14.jpg');
+
                         py = 0;
+                        net('/b', aa, 'px='+px+'&py='+py);
                     }
                     x = 0;
                     break;
@@ -220,7 +227,8 @@
 
         }
     }
-    net('/b', aa, 'a=1');
+    net('/b', aa, 'px='+px+'&py='+py);
+
 </script>
 </body>
 </html>
