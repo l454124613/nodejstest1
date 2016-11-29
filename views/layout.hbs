@@ -61,6 +61,16 @@
         ditu(event.keyCode);
         document.getElementById("l1").style.left = px * 64 + 'px';
         document.getElementById("l1").style.top = py * 64 + 'px';
+        if(px>13){
+            document.getElementById("l5").style.left = (px * 64-142) + 'px';
+        }else {
+            document.getElementById("l5").style.left = (px * 64+20) + 'px';
+        }
+        if(py>5){
+            document.getElementById("l5").style.top = (py * 64-142) + 'px';
+        }else {
+            document.getElementById("l5").style.top = py * 64 + 'px';
+        }
         document.getElementById('l1').style.backgroundPosition = ' 0px  ' + '-' + x * 64 + 'px';
         // console.log(a+'|'+b);
 
@@ -179,6 +189,8 @@
 
     function ditu(z) {
 
+
+
         if (px >= 0 && py >= 0 && px < 16 && py < 8 && !isclick) {
             //    alert(di[1].length);
 
@@ -225,8 +237,19 @@
                     }
                     x = 0;
                     break;
+                case ss[4]:
+                    document.getElementById('l5').innerHTML='你好~！';
+                    document.getElementById('l5').style.display='block';
+                    break;
+                case ss[5]:
+
+                    document.getElementById('l5').style.display='none';
+                    break;
 
             }
+
+
+
         } else {
 
             switch (fid) {
