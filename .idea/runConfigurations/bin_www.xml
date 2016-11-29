@@ -4,6 +4,7 @@
       <env name="DEBUG" value="node1:*" />
     </envs>
     <browser url="http://localhost:3000/" />
+    <profiling log-folder="../../node1" />
     <method />
   </configuration>
 </component>

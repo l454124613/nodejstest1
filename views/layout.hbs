@@ -17,6 +17,7 @@
     var px = 0;//di
     var py = 0;//di
     var di;
+    var isclick = false;
     var ajax = new XMLHttpRequest();
     function net(url, sendfun, data) {
 
@@ -33,7 +34,7 @@
                 var data = eval('(' + ajax.responseText + ')');
                 di = data;
                 dongtu(1);
-               //  console.log( di[1][1]);
+                //  console.log( di[1][1]);
 
             }
             else {
@@ -58,8 +59,8 @@
 //              case  40: x=0; break;
         //    }
         ditu(event.keyCode);
-        document.getElementById("l1").style.left =  px * 64 + 'px';
-        document.getElementById("l1").style.top =  py * 64 + 'px';
+        document.getElementById("l1").style.left = px * 64 + 'px';
+        document.getElementById("l1").style.top = py * 64 + 'px';
         document.getElementById('l1').style.backgroundPosition = ' 0px  ' + '-' + x * 64 + 'px';
         // console.log(a+'|'+b);
 
@@ -76,148 +77,151 @@
     function dongtu(a) {
 //        net('/b', aa, 'a=1');
         var ree = '';
-       // console.log(di);
+        // console.log(di);
         // document.getElementById('l2').style.backgroundImage="url('images/"+name+"')";
         //  alert(get4(1,1));
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 16; j++) {
 
                 if (di[i][j] == 0) {
-                    ree = ree + '   <div style="float: left; width:64px;height: 64px; background-image:url(\'images/hei.jpg\'); " class="'+i+":"+j+'"> </div>'
+                    ree = ree + '   <div style="float: left; width:64px;height: 64px; background-image:url(\'images/hei.jpg\'); " class="' + i + ":" + j + '"> </div>'
 
 
                 } else {
-                    ree = ree + '   <div style=" float: left;width: 64px;height: 64px; background-image:url(\'images/bai.jpg\'); " class="'+i+":"+j+'" > </div>'
+                    ree = ree + '   <div style=" float: left;width: 64px;height: 64px; background-image:url(\'images/bai.jpg\'); " class="' + i + ":" + j + '" > </div>'
                 }
 
             }
         }
-        document.getElementById('l3').innerHTML=ree;
+        document.getElementById('l3').innerHTML = ree;
     }
 
-//    function get4(i, j) {
-//        //zhong =1
-//        //左上=2
-//        //左下=3
-//        //右上=4
-//        //右下=5
-//        var re = [];
-//        if (i == 0) {
-//            if (j == 0) {
-//                re[0] = 2;
-//                re[1] = 2;
-//                re[2] = di[i][j + 1];
-//                re[3] = di[i + 1][j];
-//            } else {
-//                if (j == 45) {
-//                    re[0] = di[i][j - 1];
-//                    re[1] = 2;
-//                    re[2] = 2;
-//                    re[3] = di[i + 1][j];
-//                } else {
-//                    re[0] = di[i][j - 1];
-//                    re[1] = 2;
-//                    re[2] = di[i][j + 1];
-//                    re[3] = di[i + 1][j];
-//                }
-//
-//            }
-//
-//        } else {
-//
-//            if (i == 20) {
-//                if (j == 0) {
-//                    re[0] = 2;
-//                    re[1] = di[i - 1][j];
-//                    re[2] = di[i][j + 1];
-//                    re[3] = 2;
-//                } else {
-//                    if (j == 45) {
-//                        re[0] = di[i][j - 1];
-//                        re[1] = di[i - 1][j];
-//                        re[2] = 2;
-//                        re[3] = 2;
-//                    } else {
-//                        re[0] = di[i][j - 1];
-//                        re[1] = di[i - 1][j];
-//                        re[2] = di[i][j + 1];
-//                        re[3] = 2;
-//                    }
-//
-//                }
-//
-//            } else {
-//                if (j == 0) {
-//                    re[0] = 2;
-//                    re[1] = di[i - 1][j];
-//                    re[2] = di[i][j + 1];
-//                    re[3] = di[i + 1][j];
-//                } else {
-//                    if (j == 45) {
-//                        re[0] = di[i][j - 1];
-//                        re[1] = di[i - 1][j];
-//                        re[2] = 2;
-//                        re[3] = di[i + 1][j];
-//                    } else {
-//                        re[0] = di[i][j - 1];
-//                        re[1] = di[i - 1][j];
-//                        re[2] = di[i][j + 1];
-//                        re[3] = di[i + 1][j];
-//                    }
-//
-//                }
-//            }
-//
-//        }
-//        return re;
-//    }
+    //    function get4(i, j) {
+    //        //zhong =1
+    //        //左上=2
+    //        //左下=3
+    //        //右上=4
+    //        //右下=5
+    //        var re = [];
+    //        if (i == 0) {
+    //            if (j == 0) {
+    //                re[0] = 2;
+    //                re[1] = 2;
+    //                re[2] = di[i][j + 1];
+    //                re[3] = di[i + 1][j];
+    //            } else {
+    //                if (j == 45) {
+    //                    re[0] = di[i][j - 1];
+    //                    re[1] = 2;
+    //                    re[2] = 2;
+    //                    re[3] = di[i + 1][j];
+    //                } else {
+    //                    re[0] = di[i][j - 1];
+    //                    re[1] = 2;
+    //                    re[2] = di[i][j + 1];
+    //                    re[3] = di[i + 1][j];
+    //                }
+    //
+    //            }
+    //
+    //        } else {
+    //
+    //            if (i == 20) {
+    //                if (j == 0) {
+    //                    re[0] = 2;
+    //                    re[1] = di[i - 1][j];
+    //                    re[2] = di[i][j + 1];
+    //                    re[3] = 2;
+    //                } else {
+    //                    if (j == 45) {
+    //                        re[0] = di[i][j - 1];
+    //                        re[1] = di[i - 1][j];
+    //                        re[2] = 2;
+    //                        re[3] = 2;
+    //                    } else {
+    //                        re[0] = di[i][j - 1];
+    //                        re[1] = di[i - 1][j];
+    //                        re[2] = di[i][j + 1];
+    //                        re[3] = 2;
+    //                    }
+    //
+    //                }
+    //
+    //            } else {
+    //                if (j == 0) {
+    //                    re[0] = 2;
+    //                    re[1] = di[i - 1][j];
+    //                    re[2] = di[i][j + 1];
+    //                    re[3] = di[i + 1][j];
+    //                } else {
+    //                    if (j == 45) {
+    //                        re[0] = di[i][j - 1];
+    //                        re[1] = di[i - 1][j];
+    //                        re[2] = 2;
+    //                        re[3] = di[i + 1][j];
+    //                    } else {
+    //                        re[0] = di[i][j - 1];
+    //                        re[1] = di[i - 1][j];
+    //                        re[2] = di[i][j + 1];
+    //                        re[3] = di[i + 1][j];
+    //                    }
+    //
+    //                }
+    //            }
+    //
+    //        }
+    //        return re;
+    //    }
     //alert(get4(1,1));
     //alert(di[1][0]);
+    ss = [37, 38, 39, 40, 65, 83];
+
+
     function ditu(z) {
 
-        if (px >= 0 && py >= 0 && px < 16 && py < 8) {
+        if (px >= 0 && py >= 0 && px < 16 && py < 8 && !isclick) {
             //    alert(di[1].length);
 
             switch (z) {
 
-                case  37:
+                case  ss[0]:
                     if (px > 0) {
                         if (di[py][px - 1] == '1')px = px - 1;
                     } else {
 
                         px = 15;
-                        net('/b', aa, 'px='+px+'&py='+py);
+                        net('/b', aa, 'px=' + px + '&py=' + py);
                     }
                     x = 1;
                     break;
-                case  38:
+                case  ss[1]:
                     if (py > 0) {
                         if (di[py - 1][px] == '1')py = py - 1;
                     } else {
 
                         py = 7;
-                       // console.log(px+':'+py);
-                        net('/b', aa, 'px='+px+'&py='+py);
+                        // console.log(px+':'+py);
+                        net('/b', aa, 'px=' + px + '&py=' + py);
                     }
                     x = 3;
                     break;
-                case  39:
+                case  ss[2]:
                     if (px < 15) {
                         if (di[py][px + 1] == '1')px = px + 1;
                     } else {
 
                         px = 0;
-                        net('/b', aa, 'px='+px+'&py='+py);
+                        net('/b', aa, 'px=' + px + '&py=' + py);
                     }
                     x = 2;
                     break;
-                case  40:
+                case  ss[3]:
                     if (py < 7) {
                         if (di[py + 1][px] == '1')py = py + 1;
                     } else {
 
                         py = 0;
-                        net('/b', aa, 'px='+px+'&py='+py);
+                        net('/b', aa, 'px=' + px + '&py=' + py);
                     }
                     x = 0;
                     break;
@@ -225,9 +229,126 @@
             }
         } else {
 
+            switch (fid) {
+                case 'n':
+                    break;
+                case 'b0':
+                    if (!contains(ss, event.keyCode))ss[0] = event.keyCode;
+                    focus1(fid);
+                    break;
+                case 'b1':
+                    if (!contains(ss, event.keyCode))
+                    ss[1] = event.keyCode;
+                    focus1(fid);
+                    break;
+                case 'b2':
+                    if (!contains(ss, event.keyCode))
+                    ss[2] = event.keyCode;
+                    focus1(fid);
+                    break;
+                case 'b3':
+                    if (!contains(ss, event.keyCode))
+                    ss[3] = event.keyCode;
+                    focus1(fid);
+                    break;
+                case 'b4':
+                    if (!contains(ss, event.keyCode))
+                    ss[4] = event.keyCode;
+                    focus1(fid);
+                    break;
+                case 'b5':
+                    if (!contains(ss, event.keyCode))
+                    ss[5] = event.keyCode;
+                    focus1(fid);
+                    break;
+            }
+
+
         }
     }
-    net('/b', aa, 'px='+px+'&py='+py);
+    var fid = 'n';
+    function contains(a, obj) {
+        var i = a.length;
+        while (i--) {
+            //console.log(a[i]);
+            if (a[i] === obj) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function showbut() {
+        isclick = true;
+        document.getElementById('l4').style.display = 'block';
+
+    }
+    function closebut() {
+        isclick = false;
+        document.getElementById('l4').style.display = 'none';
+
+
+    }
+
+    function bb() {
+        if (ajax.readyState == 4) {
+            if (ajax.status == 200) {
+
+                // console.log( ajax.responseText );
+                var data = eval('(' + ajax.responseText + ')');
+                document.getElementById(fid).value = data;
+
+            }
+            else {
+                console.log("HTTP请求错误！错误码：" + ajax.status);
+            }
+        }
+        else {
+            // fnLoading();
+        }
+    }
+
+    function cc(a) {
+        if (ajax.readyState == 4) {
+            if (ajax.status == 200) {
+
+                // console.log( ajax.responseText );
+                var data = eval('(' + ajax.responseText + ')');
+                document.getElementById(a).value = data;
+
+            }
+            else {
+                console.log("HTTP请求错误！错误码：" + ajax.status);
+            }
+        }
+        else {
+            // fnLoading();
+        }
+    }
+    function focus1(a) {
+
+        fid = a;
+
+        net('/c', bb, 'name=' + ss[Number(fid.replace('b', ''))]);
+        document.getElementById(a).style.backgroundColor = '#AAA';
+
+
+    }
+
+
+    function blur1(a) {
+        if (fid == 'n') {
+
+            document.getElementById(a).style.backgroundColor = '#fff';
+        } else {
+            document.getElementById(fid).style.backgroundColor = '#fff';
+            fid = 'n';
+        }
+
+    }
+
+
+    net('/b', aa, 'px=' + px + '&py=' + py);
 
 </script>
 </body>

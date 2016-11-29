@@ -3,7 +3,9 @@ var router = express.Router();
 var fs = require('fs');
 var b = require('bluebird');
 var Go=require('../test/t2');
+var sqlite3 = require('sqlite3').verbose();
 var go=new Go();
+var db = new sqlite3.Database('map/ndb.db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -38,6 +40,21 @@ router.post('/b',function( req,res){
   var arr=go.getarr(req.body.py,req.body.px);
 
     res.json(arr);
+
+
+});
+router.post('/c',function( req,res){
+
+    db.all("SELECT value FROM keycode where ok=0 and name= "+req.body.name, function(err, row) {
+        //console.log(row);
+     var    res1= row[0].value;
+
+        res.json(res1);
+    });
+
+
+
+
 
 
 });
